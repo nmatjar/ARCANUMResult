@@ -200,10 +200,7 @@ getClientStats(clientId)
 
 **Konfiguracja:**
 ```javascript
-// Wymagane zmienne środowiskowe
-VITE_AIRTABLE_API_KEY=your_key
-VITE_AIRTABLE_BASE_ID=your_base
-VITE_AIRTABLE_TABLE_NAME=Clients
+
 ```
 
 **Format danych klienta:**
@@ -576,21 +573,13 @@ export const LEVEL_PROMPTS = {
 **Problem: Błąd 404 Airtable**
 ```javascript
 // Sprawdź .env
-VITE_AIRTABLE_API_KEY=correct_key
-VITE_AIRTABLE_BASE_ID=correct_base
 
-// Sprawdź konsole
-console.log('API Key:', import.meta.env.VITE_AIRTABLE_API_KEY);
-```
+
+
 
 **Problem: Gemini API Error**
 ```javascript
-// Sprawdź klucz API
-VITE_GEMINI_API_KEY=correct_key
 
-// Sprawdź model
-VITE_GEMINI_MODEL=gemini-1.5-pro
-```
 
 **Problem: CSS nie ładuje się**
 ```javascript
@@ -602,7 +591,7 @@ import './assets/styles/arcanum-levels.css';
 ### 2. Logi Debug
 ```javascript
 // Włącz debug mode w .env
-VITE_DEBUG_MODE=true
+
 
 // Sprawdź konsole browser dla szczegółowych logów
 ```
