@@ -1,4 +1,5 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import { createContext, useState } from 'react';
+import PropTypes from 'prop-types';
 import { verifyCareerCode, generateContent } from '../services/apiService';
 import { deductTokens } from '../services/airtableService';
 import { callOpenRouterAPI } from '../utils/openRouterApi';
@@ -6,18 +7,12 @@ import { TOKEN_COSTS, APP_CONFIG, featuresConfig } from '../config/featuresConfi
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
 // Tworzenie kontekstu
-const UserContext = createContext();
-
-// Hook do używania kontekstu
-export const useUserContext = () => {
-  const context = useContext(UserContext);
-  if (!context) {
-    throw new Error('useUserContext must be used within a UserProvider');
-  }
-  return context;
-};
+export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+UserProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
   // Używamy useLocalStorage zamiast zwykłego useState dla persystencji
   const [userCode, setUserCode] = useLocalStorage('userCode', '');
   const [userData, setUserData] = useLocalStorage('userData', null);
