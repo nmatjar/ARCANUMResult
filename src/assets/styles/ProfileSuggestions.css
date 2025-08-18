@@ -1,0 +1,151 @@
+.profile-suggestions {
+  margin-top: 1.5rem;
+  border-top: 1px solid var(--mid-gray);
+  padding-top: 1rem;
+}
+
+.profile-suggestions h3 {
+  font-size: 1.1rem;
+  color: var(--dark);
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.suggestion-card {
+  background-color: var(--light);
+  border: 1px solid var(--mid-gray);
+  border-left: 4px solid var(--primary);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.suggestion-card.accepted {
+  border-left-color: var(--success);
+  background-color: rgba(16, 185, 129, 0.05);
+}
+
+.suggestion-card.rejected {
+  border-left-color: var(--danger);
+  background-color: rgba(239, 68, 68, 0.05);
+  opacity: 0.7;
+}
+
+.suggestion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.field-name {
+  font-weight: 600;
+  color: var(--dark-gray);
+  font-size: 0.9rem;
+}
+
+.suggested-value {
+  margin: 0.5rem 0 0;
+  font-size: 1rem;
+  color: var(--dark);
+}
+
+.suggestion-actions {
+  display: flex;
+  gap: 0.5rem;
+  min-width: 200px;
+  justify-content: flex-end;
+}
+
+.accept-btn, .reject-btn {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+.accept-btn {
+  background-color: var(--success);
+  color: white;
+}
+
+.accept-btn:hover {
+  background-color: #0ca678;
+  transform: translateY(-1px);
+}
+
+.reject-btn {
+  background-color: transparent;
+  color: var(--dark-gray);
+  border: 1px solid var(--mid-gray);
+}
+
+.reject-btn:hover {
+  background-color: var(--light-gray);
+  color: var(--dark);
+}
+
+.status-message {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 140px;
+  justify-content: center;
+  font-weight: 500;
+  animation: fadeIn 0.3s ease;
+}
+
+.status-message.accepted {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.status-message.rejected {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .suggestion-card {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .suggestion-content {
+    margin-bottom: 0.75rem;
+    width: 100%;
+  }
+  
+  .suggestion-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}
+
+@media (max-width: 480px) {
+  .suggestion-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .accept-btn, .reject-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

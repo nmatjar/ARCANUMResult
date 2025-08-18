@@ -1,0 +1,351 @@
+{
+  "hello": "Cześć",
+  "client": "Klient",
+  "level": "Poziom",
+  "level1": "Pulpit Bohatera",
+  "level2": "Wymiary Strategiczne",
+  "level3": "Zaawansowane Analizy",
+  "level4": "Ukryte Skarby",
+  "level5": "Kompas Akademicki",
+  "errorTitle": "Wystąpił problem z analizą",
+  "errorCauses": "Możliwe przyczyny:",
+  "errorCause1": "Nieprawidłowy identyfikator klienta",
+  "errorCause2": "Brak dostępu do wyników lub dostęp wygasł",
+  "errorCause3": "Problemy z połączeniem internetowym",
+  "errorCause4": "Tymczasowe problemy z serwerem",
+  "retry": "Spróbuj ponownie",
+  "goHome": "Powrót do strony głównej",
+  "supportInfo": "Jeśli problem się powtarza, skontaktuj się z naszym zespołem wsparcia.",
+  "sessionInfo": "Informacje o sesji",
+  "analysisDate": "Data analizy",
+  "sessionId": "ID sesji",
+  "generated": "Wygenerowano",
+  "support": "Wsparcie",
+  "helpCenter": "Centrum pomocy",
+  "privacyPolicy": "Polityka prywatności",
+  "copyright": "Wszystkie prawa zastrzeżone",
+  "disclaimer": "Wyniki analizy psychometrycznej mają charakter informacyjny i nie stanowią diagnozy medycznej.",
+  "resultsPortal": "ARCĀNUM Portal Wyników",
+  "enterCodePrompt": "Wprowadź swój kod dostępu do wyników analizy psychometrycznej",
+  "accessCode": "Kod dostępu",
+  "codePlaceholder": "np. ABC123",
+  "checkingAccess": "Sprawdzanie dostępu",
+  "accessResults": "Dostęp do wyników",
+  "codeInfo": "Kod dostępu otrzymałeś w wiadomości email po zakończeniu testu psychometrycznego.",
+  "problemAccessing": "Masz problem z dostępem?",
+  "contactUs": "Skontaktuj się z nami",
+  "enterCode": "Proszę wprowadzić kod dostępu",
+  "codeTooShort": "Kod dostępu jest za krótki",
+  "promptCatalog": {
+    "title": "Uniwersalny Katalog Możliwości",
+    "description": "Ten katalog zawiera 80 szablonów analitycznych, zaprojektowanych do systematycznego i wielopoziomowego przetwarzania surowego raportu analitycznego na spersonalizowane, użyteczne i strategiczne insighty. Jest to narzędzie dla osób decyzyjnych, które pokazuje jakie możliwości daje nasz test i zachęca do wypróbowania większej ilości z nich.",
+    "categories": {
+      "1": "Rdzeń Tożsamości i System Operacyjny",
+      "2": "Supermoce i Zasoby Naturalne",
+      "3": "Wyzwania, Konflikty i Paradoksy Rozwojowe",
+      "4": "Potencjał Zawodowy i Ścieżki Kariery",
+      "5": "Dynamika Interpersonalna i Styl Komunikacji",
+      "6": "Strategia Rozwoju Osobistego i Integracji Cienia",
+      "7": "Wizualizacje Danych",
+      "8": "Zaawansowana Analiza i Wiedza Emergentna"
+    },
+    "prompts": {
+      "1_1": {
+        "title": "Metafora Systemu Operacyjnego",
+        "benefit": "Zrozum wewnętrzny 'system operacyjny' osoby, jej główny napęd, kluczowe programy i potencjalne błędy systemowe."
+      },
+      "1_2": {
+        "title": "Deklaracja Misji Osobistej",
+        "benefit": "Odkryj esencję najważniejszych dążeń osoby, sformułowaną jako jej osobista deklaracja misji."
+      },
+      "1_3": {
+        "title": "Główny Motor Napędowy",
+        "benefit": "Zidentyfikuj i opisz główny, pozytywny motor napędowy, który motywuje osobę do działania."
+      },
+      "1_4": {
+        "title": "Główny Hamulec Awersyjny",
+        "benefit": "Zrozum, co jest najsilniejszym hamulcem i źródłem wewnętrznego oporu dla danej osoby."
+      },
+      "1_5": {
+        "title": "Hierarchia Potrzeb",
+        "benefit": "Zobacz, jak kluczowe potrzeby psychologiczne osoby układają się w spersonalizowaną hierarchię."
+      },
+      "1_6": {
+        "title": "Balans DO vs. OD",
+        "benefit": "Oceń, czy motywacja osoby jest bardziej napędzana przez dążenie 'DO' czegoś, czy ucieczkę 'OD' czegoś."
+      },
+      "1_7": {
+        "title": "Poziom Energii",
+        "benefit": "Opisz domyślny poziom i styl energii życiowej osoby – czy jest stały, czy erupcyjny."
+      },
+      "1_8": {
+        "title": "Źródła Inspiracji vs. Frustracji",
+        "benefit": "Uzyskaj klarowną tabelę porównującą, co inspiruje i energetyzuje osobę, a co ją frustruje."
+      },
+      "1_9": {
+        "title": "Opis dla Biografa",
+        "benefit": "Zobacz, jak esencja wkładu danej osoby w świat mogłaby zostać opisana w encyklopedii."
+      },
+      "1_10": {
+        "title": "Rdzeń Decyzyjny",
+        "benefit": "Zrozum, jakich filtrów mentalnych (logicznych, intuicyjnych, etc.) osoba używa przy podejmowaniu decyzji."
+      },
+      "2_1": {
+        "title": "Katalog Supermocy",
+        "benefit": "Otrzymaj listę 3-5 kluczowych 'supermocy' osoby, wraz z ich opisem i składnikami psychometrycznymi."
+      },
+      "2_2": {
+        "title": "Analiza Kluczowej Sublimacji",
+        "benefit": "Zgłęb, jak najbardziej wysublimowany talent osoby manifestuje się w różnych dziedzinach życia."
+      },
+      "2_3": {
+        "title": "Instrukcja Użycia Supermocy",
+        "benefit": "Dowiedz się, jak osoba może świadomie aktywować, pielęgnować i chronić swoją najsilniejszą supermoc."
+      },
+      "2_4": {
+        "title": "Opis Talentu na LinkedIn",
+        "benefit": "Wygeneruj gotowy do użycia, atrakcyjny opis unikalnych talentów do sekcji 'O mnie' na LinkedIn."
+      },
+      "2_5": {
+        "title": "Monetyzacja Talentów",
+        "benefit": "Odkryj 3 konkretne modele biznesowe lub zawodowe, które pozwalają na monetyzację najsilniejszych talentów."
+      },
+      "2_6": {
+        "title": "Synergia Talentów",
+        "benefit": "Zrozum, jak połączenie dwóch pozornie odległych talentów tworzy unikalną, synergiczną całość."
+      },
+      "2_7": {
+        "title": "Ukryty Zasób - Ambiwalencja",
+        "benefit": "Zobacz, jak świadome zarządzanie wewnętrzną ambiwalencją może stać się ukrytym zasobem."
+      },
+      "2_8": {
+        "title": "Talenty w Kontekście Zespołu",
+        "benefit": "Opisz unikalną wartość, jaką osoba o tym profilu wnosi do zespołu i jakie role naturalnie przyjmuje."
+      },
+      "2_9": {
+        "title": "Zasoby do 'Walki ze Smokami'",
+        "benefit": "Dowiedz się, jakie wewnętrzne zasoby osoba może wykorzystać do radzenia sobie z największymi wyzwaniami."
+      },
+      "2_10": {
+        "title": "Marka Osobista",
+        "benefit": "Zdefiniuj 3 kluczowe filary marki osobistej, które osoba powinna komunikować światu."
+      },
+      "3_1": {
+        "title": "Głęboka Analiza Głównego Konfliktu",
+        "benefit": "Zrozum główny neurotyczny konflikt osoby, jego dynamikę, objawy i strategie zarządzania nim."
+      },
+      "3_2": {
+        "title": "Analiza Głównej Awersji",
+        "benefit": "Opisz 'syndrom' wynikający z najsilniejszej awersji, jego konsekwencje i praktyczne 'obejścia'."
+      },
+      "3_3": {
+        "title": "Rejestr Ryzyk Wewnętrznych",
+        "benefit": "Otrzymaj tabelę ryzyk wewnętrznych, zawierającą ich opis, prawdopodobieństwo i strategie mitygacji."
+      },
+      "3_4": {
+        "title": "Instrukcja dla Managera",
+        "benefit": "Wygeneruj poufny poradnik dla managera, opisujący jak zarządzać potencjałem i unikać pułapek."
+      },
+      "3_5": {
+        "title": "Analiza Ambiwalencji Relacyjnej",
+        "benefit": "Zanalizuj, jak wewnętrzna ambiwalencja wobec siły lub delikatności wpływa na bliskie relacje."
+      },
+      "3_6": {
+        "title": "Mechanizmy Sabotujące",
+        "benefit": "Zidentyfikuj 3 potencjalne mechanizmy autosabotażu wynikające z profilu psychometrycznego."
+      },
+      "3_7": {
+        "title": "Mapa Ślepych Punktów",
+        "benefit": "Wypunktuj 3 'ślepe punkty', które osoba może regularnie przeoczać w ocenie sytuacji."
+      },
+      "3_8": {
+        "title": "Koszt Energetyczny Konfliktów",
+        "benefit": "Oszacuj, który z wewnętrznych konfliktów pochłania najwięcej energii psychicznej osoby."
+      },
+      "3_9": {
+        "title": "Cień Supermocy",
+        "benefit": "Odkryj 'ciemną stronę' najsilniejszych talentów – jak mogą stać się słabością w pewnych kontekstach."
+      },
+      "3_10": {
+        "title": "Scenariusze Kryzysowe",
+        "benefit": "Zobacz, jak osoba prawdopodobnie zareaguje na 3 typowe scenariusze kryzysowe w pracy."
+      },
+      "4_1": {
+        "title": "Archetypy Zawodowe",
+        "benefit": "Zdefiniuj 3-5 archetypów zawodowych, które najlepiej pasują do profilu badanej osoby."
+      },
+      "4_2": {
+        "title": "Projekt Idealnego Środowiska Pracy",
+        "benefit": "Otrzymaj opis idealnego środowiska pracy, dopasowanego do dążeń i awersji osoby."
+      },
+      "4_3": {
+        "title": "Lista 'Anty-Ról'",
+        "benefit": "Stwórz listę 5 konkretnych ról lub typów pracy, których osoba powinna unikać dla własnego dobra."
+      },
+      "4_4": {
+        "title": "Profil Przedsiębiorcy",
+        "benefit": "Oceń potencjał osoby jako przedsiębiorcy i zidentyfikuj, jakiego wspólnika potrzebuje."
+      },
+      "4_5": {
+        "title": "Rekomendowane Branże",
+        "benefit": "Zarekomenduj 3-4 branże, w których profil badanej osoby może najpełniej zabłysnąć."
+      },
+      "4_6": {
+        "title": "Strategia Rozwoju Kariery na 5 lat",
+        "benefit": "Zaproponuj strategiczny plan rozwoju kariery na 5 lat, maksymalizujący talenty i omijający pułapki."
+      },
+      "4_7": {
+        "title": "Idealny Szef",
+        "benefit": "Opisz profil idealnego szefa, który potrafiłby wydobyć z tej osoby to, co najlepsze."
+      },
+      "4_8": {
+        "title": "Styl Pracy: Solista czy Zespół?",
+        "benefit": "Rozstrzygnij, czy osoba jest bardziej efektywna jako solista, ekspert czy członek zespołu."
+      },
+      "4_9": {
+        "title": "Sposoby na Networking",
+        "benefit": "Zaproponuj 3 skuteczne i komfortowe strategie budowania sieci zawodowej, zgodne z naturą osoby."
+      },
+      "4_10": {
+        "title": "Pytania do Rekrutacji",
+        "benefit": "Otrzymaj listę 5 kluczowych pytań, które osoba powinna zadać podczas rozmowy kwalifikacyjnej."
+      },
+      "5_1": {
+        "title": "Profil Komunikacyjny",
+        "benefit": "Stwórz zwięzły profil komunikacyjny, opisujący preferowany styl, kanały i tematy rozmów."
+      },
+      "5_2": {
+        "title": "Poradnik 'Jak ze mną rozmawiać'",
+        "benefit": "Wygeneruj życzliwy poradnik w pierwszej osobie, wyjaśniający jak efektywnie komunikować się z tą osobą."
+      },
+      "5_3": {
+        "title": "Styl Rozwiązywania Konfliktów",
+        "benefit": "Opisz domyślny styl rozwiązywania konfliktów (unikanie, kompromis, walka, adaptacja)."
+      },
+      "5_4": {
+        "title": "Profil Współpracownika",
+        "benefit": "Opisz, jakim typem współpracownika jest dana osoba i jaki jest jej wkład w atmosferę zespołu."
+      },
+      "5_5": {
+        "title": "W Relacji Partnerskiej",
+        "benefit": "Przeanalizuj, jak profil osoby może manifestować się w bliskiej relacji partnerskiej."
+      },
+      "5_6": {
+        "title": "Odbiór Feedbacku",
+        "benefit": "Zrozum, jak osoba prawdopodobnie odbiera feedback i jaką formę jego dostarczenia preferuje."
+      },
+      "5_7": {
+        "title": "Budowanie Zaufania",
+        "benefit": "Dowiedz się, co jest kluczowe dla tej osoby w budowaniu zaufania w relacjach."
+      },
+      "5_8": {
+        "title": "Granice Interpersonalne",
+        "benefit": "Opisz, jak osoba prawdopodobnie stawia granice w relacjach z innymi."
+      },
+      "5_9": {
+        "title": "Rola w Grupie",
+        "benefit": "Określ, jaką rolę społeczną osoba najprawdopodobniej przyjmie w nowej grupie."
+      },
+      "5_10": {
+        "title": "Język Miłości i Uznania",
+        "benefit": "Odkryj preferowany 'język miłości' lub uznania w pracy dla tej osoby."
+      },
+      "6_1": {
+        "title": "Mapa Drogowa Rozwoju",
+        "benefit": "Stwórz mapę drogową rozwoju osobistego na 2 lata, z 3 ścieżkami i konkretnymi działaniami."
+      },
+      "6_2": {
+        "title": "Priorytet Rozwojowy nr 1",
+        "benefit": "Zidentyfikuj jeden, kluczowy obszar do rozwoju, który przyniesie największy zwrot z inwestycji."
+      },
+      "6_3": {
+        "title": "Program Treningowy 'Mięśnia Woli'",
+        "benefit": "Zaproponuj 3-etapowy program treningowy do oswajania najsilniejszej awersji z wektora Woli."
+      },
+      "6_4": {
+        "title": "System Zarządzania Awersją",
+        "benefit": "Stwórz 5-punktowy system do zarządzania główną awersją z wektora Temperamentu."
+      },
+      "6_5": {
+        "title": "Rekomendacje Lektur i Kursów",
+        "benefit": "Otrzymaj listę 3 książek, 2 kursów i 1 podcastu, które adresują kluczowe wyzwania osoby."
+      },
+      "6_6": {
+        "title": "Praktyki Integracji Cienia",
+        "benefit": "Zaproponuj 3 konkretne praktyki (np. prowadzenie dziennika) do integracji odrzuconych aspektów osobowości."
+      },
+      "6_7": {
+        "title": "Pytania do Dziennika",
+        "benefit": "Otrzymaj listę 10 pytań do regularnej autorefleksji, które pomogą monitorować postępy."
+      },
+      "6_8": {
+        "title": "Tworzenie Systemu Wsparcia",
+        "benefit": "Opisz, jaki system wsparcia (mentor, coach, etc.) byłby najbardziej korzystny dla tej osoby."
+      },
+      "6_9": {
+        "title": "Definicja Sukcesu",
+        "benefit": "Pomóż osobie zdefiniować jej własną, spersonalizowaną definicję sukcesu, zgodną z jej naturą."
+      },
+      "6_10": {
+        "title": "Mantra Osobista",
+        "benefit": "Stwórz krótką mantrę lub afirmację, którą osoba mogłaby stosować w trudnych chwilach."
+      },
+      "7_1": {
+        "title": "Profil Radarowy",
+        "benefit": "Wygeneruj dane w formacie JSON dla wykresu radarowego profilu BBT."
+      },
+      "7_2": {
+        "title": "Wykres Słupkowy Wektorów",
+        "benefit": "Wygeneruj dane w formacie JSON dla zgrupowanego wykresu słupkowego, obrazującego napięcia w 4 wektorach."
+      },
+      "7_3": {
+        "title": "Wskaźnik Napięcia Rewersyjnego",
+        "benefit": "Oblicz i wygeneruj 'Współczynnik Napięcia Rewersyjnego' jako pojedynczą wartość JSON."
+      },
+      "7_4": {
+        "title": "Wykres Zasoby vs. Wyzwania",
+        "benefit": "Wygeneruj dane JSON dla dwóch poziomych wykresów słupkowych, porównujących zasoby i wyzwania."
+      },
+      "8_1": {
+        "title": "Profil Przywództwa",
+        "benefit": "Zdefiniuj unikalny styl przywództwa osoby, syntetyzując kluczowe wektory jej osobowości."
+      },
+      "8_2": {
+        "title": "Profil Podejmowania Ryzyka",
+        "benefit": "Przeanalizuj profil podejmowania ryzyka w różnych domenach (kreatywne, finansowe, interpersonalne)."
+      },
+      "8_3": {
+        "title": "Model Idealnego Partnera Biznesowego",
+        "benefit": "Stwórz profil BBT idealnego wspólnika, który idealnie komplementuje profil badanej osoby."
+      },
+      "8_4": {
+        "title": "Długoterminowa Trajektoria Życiowa",
+        "benefit": "Naszkicuj prawdopodobną trajektorię rozwoju osoby na przestrzeni życia, w tym potencjalne kryzysy."
+      },
+      "8_5": {
+        "title": "Reakcja na Sukces i Porażkę",
+        "benefit": "Opisz, jak osoba prawdopodobnie internalizuje i reaguje na duży sukces oraz dotkliwą porażkę."
+      },
+      "8_6": {
+        "title": "Potencjał do Pracy Głębokiej",
+        "benefit": "Oceń potencjał osoby do 'pracy głębokiej' (Deep Work), identyfikując czynniki wspierające i utrudniające."
+      },
+      "8_7": {
+        "title": "Relacja z Władzą i Autorytetem",
+        "benefit": "Zrozum, jak osoba odnosi się do struktur władzy – czy jest buntownikiem, konformistą, czy reformatorem."
+      },
+      "8_8": {
+        "title": "Źródła Szczęścia i Spełnienia",
+        "benefit": "Odkryj, co według profilu jest prawdziwym, długoterminowym źródłem szczęścia i spełnienia dla tej osoby."
+      },
+      "8_9": {
+        "title": "Wpływ Środowiska Cyfrowego",
+        "benefit": "Przeanalizuj, jak współczesne środowisko cyfrowe wpływa na profil osoby, potęgując siły lub słabości."
+      },
+      "8_10": {
+        "title": "Generowanie Hipotezy Badawczej",
+        "benefit": "Sformułuj interesującą hipotezę badawczą z zakresu psychologii, opartą na unikalnych cechach tego profilu."
+      }
+    }
+  }
+}

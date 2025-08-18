@@ -1,0 +1,169 @@
+.energy-counter {
+  position: relative;
+  display: inline-block;
+}
+
+.energy-display {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 6px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  user-select: none;
+}
+
+.energy-display:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.energy-display i {
+  color: #00BFFF;
+  font-size: 14px;
+}
+
+.energy-amount {
+  font-size: 14px;
+  font-weight: 600;
+  color: white;
+}
+
+.energy-tooltip {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 280px;
+  padding: 16px;
+  z-index: 1000;
+  color: #333;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.tooltip-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.tooltip-header h4 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.close-tooltip-button {
+  background: none;
+  border: none;
+  color: #888;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.close-tooltip-button:hover {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.energy-tooltip p {
+  margin: 8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.energy-tooltip strong {
+  font-weight: 600;
+  color: #2c7be5;
+}
+
+.test-mode-badge {
+  background-color: #8a2be2;
+  color: white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  margin-left: 2px;
+}
+
+.test-mode-active {
+  background-color: #f0f4ff;
+  border-radius: 4px;
+  padding: 8px;
+  color: #4a6cf7;
+  font-weight: 500;
+  margin: 12px 0;
+}
+
+.test-mode-active i {
+  margin-right: 6px;
+}
+
+.test-mode-toggle {
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 13px;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+  width: 100%;
+  text-align: center;
+  color: #666;
+}
+
+.test-mode-toggle:hover {
+  background-color: #e0e0e0;
+}
+
+.test-mode-toggle.active {
+  background-color: #8a2be2;
+  color: white;
+}
+
+.buy-energy-button {
+  background-color: #4a6cf7;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.buy-energy-button:hover {
+  background-color: #3d5ef1;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

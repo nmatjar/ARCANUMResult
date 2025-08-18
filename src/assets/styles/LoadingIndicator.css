@@ -1,0 +1,227 @@
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(8px);
+  }
+  
+  .loading-container {
+    text-align: center;
+    padding: 2.5rem;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 10px 25px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    width: 90%;
+    overflow: hidden;
+    position: relative;
+    animation: container-fade 0.5s ease-out;
+  }
+
+  @keyframes container-fade {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* AI Brain Animation */
+  .ai-brain-animation {
+    position: relative;
+    height: 80px;
+    width: 80px;
+    margin: 0 auto 2rem;
+  }
+  
+  .ai-brain-animation i {
+    font-size: 3rem;
+    color: var(--primary);
+    animation: pulse 2s infinite;
+    position: relative;
+    z-index: 2;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.1);
+      opacity: 0.8;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  .ai-circles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .ai-circles span {
+    position: absolute;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    opacity: 0;
+    animation: ripple 2s cubic-bezier(0.65, 0, 0.34, 1) infinite;
+  }
+  
+  .ai-circles span:nth-child(1) {
+    width: 40px;
+    height: 40px;
+    animation-delay: 0s;
+  }
+  
+  .ai-circles span:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    animation-delay: 0.4s;
+  }
+  
+  .ai-circles span:nth-child(3) {
+    width: 80px;
+    height: 80px;
+    animation-delay: 0.8s;
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0.1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1);
+      opacity: 0;
+    }
+  }
+  
+  /* Loading Steps */
+  .loading-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--dark);
+    letter-spacing: -0.02em;
+  }
+  
+  .loading-steps {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .loading-steps::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 20%;
+    right: 20%;
+    height: 2px;
+    background: #e0e0e0;
+    z-index: 0;
+  }
+  
+  .step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+    width: 33%;
+  }
+  
+  .step i {
+    background: #f0f0f0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+  
+  .step.active i, .step.completed i {
+    background: var(--primary);
+    color: white;
+    box-shadow: 0 0 0 4px rgba(100, 108, 255, 0.2);
+  }
+  
+  .step span {
+    font-size: 0.85rem;
+    color: #888;
+    transition: all 0.3s ease;
+  }
+  
+  .step.active span, .step.completed span {
+    color: var(--dark);
+    font-weight: 500;
+  }
+  
+  /* Skeleton Loading UI */
+  .skeleton-preview {
+    background: #f8f8f8;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    opacity: 0.7;
+  }
+  
+  .skeleton-header, .skeleton-text, .skeleton-subheader {
+    background: linear-gradient(90deg, #eee 0%, #f5f5f5 50%, #eee 100%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s ease-in-out infinite;
+    border-radius: 4px;
+  }
+  
+  @keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  .skeleton-header {
+    height: 28px;
+    margin-bottom: 20px;
+    width: 70%;
+  }
+  
+  .skeleton-subheader {
+    height: 20px;
+    margin: 30px 0 15px 0;
+    width: 50%;
+  }
+  
+  .skeleton-text {
+    height: 14px;
+    margin-bottom: 12px;
+    width: 100%;
+  }
+  
+  .skeleton-text.short {
+    width: 60%;
+  }

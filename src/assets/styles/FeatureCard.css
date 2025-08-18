@@ -1,0 +1,306 @@
+.feature-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: var(--spacing-xl);
+    padding-bottom: 50px; /* Extra space for tokens cost */
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.9;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+  }
+  
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    border-color: rgba(0, 0, 0, 0.08);
+  }
+  
+  .feature-card:hover::before {
+    background: linear-gradient(90deg, 
+      var(--future-color), 
+      var(--studies-color), 
+      var(--activities-color), 
+      var(--workplace-color), 
+      var(--creative-color)
+    );
+  }
+  
+  .feature-card.active {
+    border-color: rgba(0, 0, 0, 0.1);
+    opacity: 1;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+  
+  .feature-card.active::before {
+    background: linear-gradient(90deg, 
+      var(--future-color), 
+      var(--studies-color), 
+      var(--activities-color), 
+      var(--workplace-color), 
+      var(--creative-color)
+    );
+    height: 6px;
+  }
+  
+  .feature-icon {
+    height: 100px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    margin-bottom: var(--spacing-lg);
+    color: var(--white);
+    font-size: 2.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    background-size: 300% 300%;
+    animation: gradientShift 8s ease infinite;
+  }
+  
+  @keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  
+  .feature-icon::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    opacity: 0;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover .feature-icon {
+    transform: scale(1.08) translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 24px;
+  }
+  
+  .feature-card:hover .feature-icon::after {
+    opacity: 1;
+  }
+  
+  .feature-title {
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    color: var(--dark);
+    font-size: 1.35rem;
+    letter-spacing: -0.02em;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover .feature-title {
+    color: var(--primary);
+  }
+  
+  .feature-desc {
+    color: var(--dark-gray);
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 280px;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover .feature-desc {
+    color: var(--dark);
+  }
+  
+  .secondary-icon {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    opacity: 0.7;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.1));
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover .secondary-icon {
+    transform: scale(1.4) rotate(15deg);
+    opacity: 1;
+  }
+
+  .icon-future {
+    background: linear-gradient(135deg, var(--future-color), var(--primary-dark));
+  }
+  
+  .icon-studies {
+    background: linear-gradient(135deg, var(--studies-color), var(--secondary-dark));
+  }
+  
+  .icon-activities {
+    background: linear-gradient(135deg, var(--activities-color), #059669);
+  }
+  
+  .icon-workplace {
+    background: linear-gradient(135deg, var(--workplace-color), #d97706);
+  }
+  
+  .icon-creative {
+    background: linear-gradient(135deg, var(--creative-color), var(--accent-dark));
+  }
+  
+  .icon-skills-gap {
+    background: linear-gradient(135deg, var(--skills-gap-color), #4c1d95);
+  }
+  
+  .icon-balance {
+    background: linear-gradient(135deg, var(--balance-color), #047857);
+  }
+  
+  .icon-networking {
+    background: linear-gradient(135deg, var(--networking-color), #075985);
+  }
+  
+  .icon-personal-brand {
+    background: linear-gradient(135deg, var(--personal-brand-color), #7e22ce);
+  }
+  
+  .icon-ai-assistant {
+    background: linear-gradient(135deg, var(--ai-assistant-color), #0284c7);
+  }
+  
+  .icon-job-search {
+    background: linear-gradient(135deg, var(--job-search-color), #9f1239);
+  }
+
+  /* Enhance gradient animations on hover */
+  .feature-card:hover .icon-future {
+    background: linear-gradient(135deg, var(--future-color), var(--primary-dark), var(--future-color));
+  }
+  
+  .feature-card:hover .icon-studies {
+    background: linear-gradient(135deg, var(--studies-color), var(--secondary-dark), var(--studies-color));
+  }
+  
+  .feature-card:hover .icon-activities {
+    background: linear-gradient(135deg, var(--activities-color), #059669, var(--activities-color));
+  }
+  
+  .feature-card:hover .icon-workplace {
+    background: linear-gradient(135deg, var(--workplace-color), #d97706, var(--workplace-color));
+  }
+  
+  .feature-card:hover .icon-creative {
+    background: linear-gradient(135deg, var(--creative-color), var(--accent-dark), var(--creative-color));
+  }
+  
+  .feature-card:hover .icon-skills-gap {
+    background: linear-gradient(135deg, var(--skills-gap-color), #4c1d95, var(--skills-gap-color));
+  }
+  
+  .feature-card:hover .icon-balance {
+    background: linear-gradient(135deg, var(--balance-color), #047857, var(--balance-color));
+  }
+  
+  .feature-card:hover .icon-networking {
+    background: linear-gradient(135deg, var(--networking-color), #075985, var(--networking-color));
+  }
+  
+  .feature-card:hover .icon-personal-brand {
+    background: linear-gradient(135deg, var(--personal-brand-color), #7e22ce, var(--personal-brand-color));
+  }
+  
+  .feature-card:hover .icon-ai-assistant {
+    background: linear-gradient(135deg, var(--ai-assistant-color), #0284c7, var(--ai-assistant-color));
+  }
+
+  .feature-card:hover .icon-job-search {
+    background: linear-gradient(135deg, var(--job-search-color), #9f1239, var(--job-search-color));
+  }
+  
+/* Token cost display */
+.feature-cost {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f8f9fa;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    color: var(--dark-gray);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.feature-cost i {
+    color: #00BFFF; /* Niebieski kolor dla ikony energii */
+    margin-right: 5px;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.feature-card:hover .feature-cost {
+    background-color: #f0f2f5;
+    color: var(--dark);
+}
+
+.feature-card:hover .feature-cost i {
+    transform: rotate(15deg);
+}
+
+/* Premium feature styling */
+.premium-feature {
+    border: 2px solid transparent;
+    background-image: linear-gradient(white, white), 
+                     linear-gradient(45deg, #f59e0b, #8b5cf6, #3b82f6);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    position: relative;
+}
+
+.premium-badge {
+    position: absolute;
+    top: -10px;
+    right: 20px;
+    background: linear-gradient(135deg, #f59e0b, #8b5cf6);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    z-index: 10;
+}
+
+.premium-badge i {
+    color: #FFD700;
+}
+  

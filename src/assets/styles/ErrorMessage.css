@@ -1,0 +1,31 @@
+.error-container {
+  background-color: var(--danger);
+  color: white;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.error-content {
+  display: flex;
+  align-items: center;
+}
+
+.error-content i {
+  margin-right: var(--spacing-md);
+}
+
+.error-close {
+  margin-left: auto;
+  background: transparent;
+  color: white;
+  border: none;
+  padding: var(--spacing-xs);
+  font-size: 1rem;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.error-close:hover {
+  opacity: 1;
+}

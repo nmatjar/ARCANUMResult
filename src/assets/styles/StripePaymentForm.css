@@ -1,0 +1,64 @@
+.stripe-payment-form {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.card-element-container {
+  border: 1px solid #e6e6e6;
+  border-radius: 4px;
+  padding: 12px;
+  background-color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  transition: box-shadow 0.2s ease;
+}
+
+.card-element-container:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.payment-error {
+  color: #fa755a;
+  margin-bottom: 16px;
+  font-size: 14px;
+  background-color: #ffe6e6;
+  padding: 8px;
+  border-radius: 4px;
+  border-left: 3px solid #fa755a;
+}
+
+.payment-button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.payment-button:hover:not(:disabled) {
+  background-color: var(--primary-dark);
+}
+
+.payment-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.payment-info {
+  margin-top: 16px;
+  font-size: 12px;
+  color: #888;
+  text-align: center;
+  background-color: #f9f9f9;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+.payment-info p {
+  margin: 4px 0;
+}
