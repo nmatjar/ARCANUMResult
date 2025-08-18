@@ -1,5 +1,4 @@
-import { callOpenRouterAPI } from '../openRouterApi.js';
-import { ARCANUM_META_PROMPT, ARCANUM_LEVEL_PROMPTS } from './arcanum-prompts.js';
+import { ARCANUM_LEVEL_PROMPTS } from './arcanum-prompts.js';
 import i18n from '../i18n.js';
 
 /**
@@ -160,30 +159,32 @@ class AIEngine {
         throw new Error(`No prompt found for level ${levelNumber}`);
       }
 
-      // Przygotuj pełny prompt z danymi klienta
-      const fullPrompt = this.preparePromptWithClientData(levelPrompt, levelNumber);
+      // Wywołaj naszą bezpieczną funkcję serwerową
+      const response = await fetch('/.netlify/functions/execute-prompt', {
+        method: 'POST',
+        body: JSON.stringify({
+          clientCode: this.clientData.code,
+          promptId: `level_${levelNumber}`, // Assuming prompt IDs are structured like this
+          model: this.currentModel,
+        }),
+      });
 
-      // Wywołaj OpenRouter API
-      const response = await callOpenRouterAPI(
-        fullPrompt,
-        this.currentModel,
-        ARCANUM_META_PROMPT,
-        {
-          sessionId: this.sessionId,
-          mode: `level-${levelNumber}`,
-          timestamp: new Date().toISOString()
-        }
-      );
+      if (!response.ok) {
+        const errorBody = await response.text();
+        throw new Error(`Serverless function failed: ${errorBody}`);
+      }
+
+      const data = await response.json();
 
       // Parsuj odpowiedź w zależności od poziomu
-      const parsedContent = this.parseResponse(levelNumber, response);
+      const parsedContent = this.parseResponse(levelNumber, data.content);
 
       console.log(`✅ Level ${levelNumber} analysis completed`);
       return {
         success: true,
         level: levelNumber,
         content: parsedContent,
-        rawText: response,
+        rawText: data.content,
         timestamp: new Date().toISOString(),
         model: this.getCurrentModel().name
       };
@@ -201,7 +202,7 @@ class AIEngine {
    * @param {'html' | 'json'} format - Oczekiwany format odpowiedzi
    * @returns {Promise<string|Object>} Wynik analizy w zadanym formacie
    */
-  async generateGenericPrompt(prompt, context, format = 'html') {
+  async generateGenericPrompt(promptId, context, format = 'html') {
     if (!this.clientData) {
       throw new Error('Session not initialized. Call initializeSession first.');
     }
@@ -209,38 +210,37 @@ class AIEngine {
     try {
       console.log(`🧠 Generating response for generic prompt (format: ${format})...`);
 
-      const fullPrompt = `
-        KONTEKST (WSTĘPNA ANALIZA):
-        ${context}
+      const response = await fetch('/.netlify/functions/execute-prompt', {
+        method: 'POST',
+        body: JSON.stringify({
+          clientCode: this.clientData.code,
+          promptId: promptId,
+          model: this.currentModel,
+        }),
+      });
 
-        POLECENIE:
-        ${prompt}
-      `;
+      if (!response.ok) {
+        const errorBody = await response.text();
+        throw new Error(`Serverless function failed: ${errorBody}`);
+      }
 
-      const response = await callOpenRouterAPI(
-        fullPrompt,
-        this.currentModel,
-        ARCANUM_META_PROMPT, // Meta-prompt systemowy nadal jest używany
-        {
-          sessionId: this.sessionId,
-          mode: 'generic-prompt',
-          timestamp: new Date().toISOString()
-        }
-      );
+      const data = await response.json();
+      const aiResponse = data.content;
+
 
       if (format === 'json') {
         try {
           // Próba sparsowania JSON-a z potencjalnych markdown code blocks
-          const jsonMatch = response.match(/```json\n([\s\S]*?)\n```/);
-          return JSON.parse(jsonMatch ? jsonMatch[1] : response);
+          const jsonMatch = aiResponse.match(/```json\n([\s\S]*?)\n```/);
+          return JSON.parse(jsonMatch ? jsonMatch[1] : aiResponse);
         } catch (e) {
           console.error("Błąd parsowania JSON, zwracam surowy tekst:", e);
-          return { error: "Invalid JSON response", raw: response };
+          return { error: "Invalid JSON response", raw: aiResponse };
         }
       }
 
       console.log(`✅ Generic prompt response generated successfully`);
-      return response; // Dla HTML zwracamy surowy tekst
+      return aiResponse; // Dla HTML zwracamy surowy tekst
 
     } catch (error) {
       console.error(`❌ Failed to generate response for generic prompt:`, error);

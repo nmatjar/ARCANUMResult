@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
-import { PROMPT_DEFINITIONS } from '../data/prompt-definitions';
+import { PROMPT_DEFINITIONS } from '../data/prompt-definitions-server';
 import { ArcanumHeader } from '../components/arcanum/ArcanumHeader';
 import { ArcanumFooter } from '../components/arcanum/ArcanumFooter';
 import { ResultModal } from '../components/arcanum/ResultModal';
