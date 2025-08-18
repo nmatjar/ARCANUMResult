@@ -6,6 +6,7 @@
 class ClientDataService {
   constructor() {
     this.initialized = true;
+    this.clientDataCache = new Map();
     console.log('✅ Client Data Service initialized');
   }
 
@@ -39,17 +40,32 @@ class ClientDataService {
    * @returns {Promise<object>} Pełne dane klienta
    */
   async getClientVectors(clientCode) {
+    if (!clientCode) {
+      console.error('getClientVectors called with undefined clientCode');
+      return null;
+    }
+
+    if (this.clientDataCache.has(clientCode)) {
+      console.log(`Returning cached data for clientCode: ${clientCode}`);
+      return this.clientDataCache.get(clientCode);
+    }
+
     if (this.isDemoCode(clientCode)) {
-      return this.getDemoData(clientCode);
+      const demoData = this.getDemoData(clientCode);
+      this.clientDataCache.set(clientCode, demoData);
+      return demoData;
     }
 
     try {
+      console.log(`Fetching data from network for clientCode: ${clientCode}`);
       const response = await fetch(`/.netlify/functions/get-client-vectors?clientCode=${clientCode}`);
       if (!response.ok) {
         throw new Error(`Network response was not ok, status: ${response.status}`);
       }
-      const data = await response.json();
-      return data;
+      const rawData = await response.json();
+      const normalizedData = this._normalizeData(rawData);
+      this.clientDataCache.set(clientCode, normalizedData);
+      return normalizedData;
     } catch (error) {
       console.error('Error fetching client vectors:', error);
       throw new Error('Nie udało się pobrać danych klienta.');
@@ -131,6 +147,34 @@ class ClientDataService {
    * @param {string} clientCode - Kod klienta
    * @returns {object} Dane demo
    */
+  /**
+   * Normalizuje klucze danych z Airtable do formatu camelCase i mapuje kluczowe pola.
+   * @param {object} data - Surowe dane z Airtable
+   * @returns {object} Znormalizowane dane
+   */
+  _normalizeData(data) {
+    const keyMap = {
+      'Code': 'code',
+      'Name/Nickname': 'name',
+      'Email address': 'email',
+      'Created Time': 'date',
+      'factors': 'complete_factors',
+      'topfactor': 'personality_type'
+    };
+
+    const normalized = {};
+    for (const key in data) {
+      const newKey = keyMap[key] || key.replace(/[^a-zA-Z0-9]/g, '').replace(/^\w/, c => c.toLowerCase());
+      normalized[newKey] = data[key];
+    }
+    
+    // Upewnij się, że kluczowe pola istnieją, nawet jeśli mapowanie zawiedzie
+    if (data.Code && !normalized.code) normalized.code = data.Code;
+    if (data['Name/Nickname'] && !normalized.name) normalized.name = data['Name/Nickname'];
+
+    return normalized;
+  }
+
   getDemoData(clientCode) {
     return {
       id: 'demo-' + clientCode,

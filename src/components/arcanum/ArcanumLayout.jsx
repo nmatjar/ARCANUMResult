@@ -53,7 +53,7 @@ export const ArcanumLayout = () => {
       setClientData(vectors);
 
       // Sesja AI jest inicjalizowana, ale nie generujemy od razu wyników
-      await aiEngine.initializeSession(vectors);
+      await aiEngine.setClientData(vectors);
 
       await dataService.logAccess(clientCode, {
         userAgent: navigator.userAgent,

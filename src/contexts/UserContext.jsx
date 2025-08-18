@@ -1,6 +1,7 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { verifyCareerCode, generateContent } from '../services/apiService';
+import { aiEngine } from '../services/ai-engine';
 const deductTokens = async (userId, tokensToDeduct) => {
   const response = await fetch('/.netlify/functions/deduct-tokens', {
     method: 'POST',
@@ -8,7 +9,13 @@ const deductTokens = async (userId, tokensToDeduct) => {
   });
   return response.json();
 };
-import { callOpenRouterAPI } from '../utils/openRouterApi';
+const callOpenRouterAPI = async (prompt, model, systemPrompt, options) => {
+  const response = await fetch('/.netlify/functions/call-open-router', {
+    method: 'POST',
+    body: JSON.stringify({ prompt, model, systemPrompt, options }),
+  });
+  return response.json();
+};
 import { TOKEN_COSTS, APP_CONFIG, featuresConfig } from '../config/featuresConfig';
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
@@ -39,13 +46,14 @@ UserProvider.propTypes = {
       if (result.success) {
         setUserCode(code);
         setUserData(result.userData || null);
+        aiEngine.setClientData(result.userData); // Update AI Engine with the latest data
         setIsCodeVerified(true);
         return { success: true };
       } else {
         setError(result.message);
         return { success: false, message: result.message };
       }
-    } catch (error) {
+    } catch {
       const errorMessage = 'Wystąpił błąd podczas weryfikacji kodu';
       setError(errorMessage);
       return { success: false, message: errorMessage };
@@ -310,8 +318,8 @@ UserProvider.propTypes = {
         const response = await fetch(`/.netlify/functions/get-user-by-id?userId=${userData.id}`);
         const updatedUserData = await response.json();
         setUserData(updatedUserData);
-      } catch (error) {
-        console.error("Error updating user data:", error);
+      } catch (err) {
+        console.error("Error updating user data:", err);
       }
     }
   };

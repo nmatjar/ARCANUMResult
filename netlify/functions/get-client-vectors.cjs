@@ -26,10 +26,11 @@ exports.handler = async (event) => {
     const baseId = process.env.AIRTABLE_BASE_ID;
     const tableName = process.env.AIRTABLE_TABLE_NAME;
 
+    // Enhanced logging for verification purposes
     console.log('Airtable Env Vars Status:', {
-      apiKey: !!apiKey ? 'Loaded' : 'MISSING',
-      baseId: !!baseId ? 'Loaded' : 'MISSING',
-      tableName: !!tableName ? 'Loaded' : 'MISSING',
+      apiKey: apiKey ? `Loaded (ends with ...${apiKey.slice(-4)})` : 'MISSING',
+      baseId: baseId ? `Loaded (${baseId})` : 'MISSING',
+      tableName: tableName ? `Loaded (${tableName})` : 'MISSING',
     });
 
     if (!apiKey || !baseId || !tableName) {
@@ -51,7 +52,7 @@ exports.handler = async (event) => {
     }
 
     const clientData = records[0].fields;
-    console.log('Successfully fetched client data.');
+    console.log('Successfully fetched client data:', clientData);
 
     return {
       statusCode: 200,

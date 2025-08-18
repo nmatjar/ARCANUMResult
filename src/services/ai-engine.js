@@ -113,27 +113,29 @@ class AIEngine {
   }
 
   /**
-   * Inicjalizuje sesję AI z danymi klienta (oryginalna struktura z tabeli Persons)
-   * @param {Object} clientData - Dane klienta z oryginalnej tabeli Persons
+   * Ustawia lub aktualizuje dane klienta dla sesji AI
+   * @param {Object} clientData - Pełne dane klienta
    */
-  async initializeSession(clientData) {
-    try {
-      this.clientData = clientData;
-      this.sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-      
-      console.log('🤖 AI Engine session initialized:', this.sessionId);
-      console.log('📊 Client data loaded:', {
-        name: clientData.name,
-        code: clientData.code,
-        personalityType: clientData.personality_type,
-        hasCompleteFactors: !!clientData.complete_factors
-      });
-      
-      return true;
-    } catch (error) {
-      console.error('❌ Failed to initialize AI session:', error);
-      throw error;
+  setClientData(clientData) {
+    if (!clientData || !clientData.code) {
+      console.error('❌ setClientData: Invalid or incomplete client data provided.', clientData);
+      this.clientData = null;
+      this.sessionId = null;
+      return false;
     }
+
+    this.clientData = clientData;
+    
+    if (!this.sessionId) {
+      this.sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      console.log('🤖 AI Engine session initialized:', this.sessionId);
+    } else {
+      console.log('🔄 Client data updated for session:', this.sessionId);
+    }
+
+    console.log('📊 Full client data loaded into AI Engine:', this.clientData);
+
+    return true;
   }
 
   /**
@@ -142,8 +144,8 @@ class AIEngine {
    * @returns {Promise<Object>} Wynik analizy
    */
   async generateLevel(levelNumber) {
-    if (!this.clientData) {
-      throw new Error('Session not initialized. Call initializeSession first.');
+    if (!this.clientData || !this.clientData.code) {
+      throw new Error('AI Engine client data not set. Call setClientData with valid data first.');
     }
 
     if (levelNumber < 1 || levelNumber > 5) {
@@ -159,13 +161,15 @@ class AIEngine {
         throw new Error(`No prompt found for level ${levelNumber}`);
       }
 
-      // Wywołaj naszą bezpieczną funkcję serwerową
-      const response = await fetch('/.netlify/functions/execute-prompt', {
+      // Wywołaj funkcję serwerową, przekazując MetaAnalysis jako kontekst
+      const response = await fetch('/.netlify/functions/call-open-router', {
         method: 'POST',
         body: JSON.stringify({
-          clientCode: this.clientData.code,
-          promptId: `level_${levelNumber}`, // Assuming prompt IDs are structured like this
+          prompt: levelPrompt,
+          context: this.clientData.MetaAnalysis,
           model: this.currentModel,
+          systemPrompt: "Jesteś ekspertem w analizie psychometrycznej.",
+          options: { max_tokens: 2048 }
         }),
       });
 
@@ -175,9 +179,10 @@ class AIEngine {
       }
 
       const data = await response.json();
+      console.log('Full response from /call-open-router:', data); // Debugging log
 
       // Parsuj odpowiedź w zależności od poziomu
-      const parsedContent = this.parseResponse(levelNumber, data.content);
+      const parsedContent = this.parseResponse(levelNumber, data.choices[0].message.content);
 
       console.log(`✅ Level ${levelNumber} analysis completed`);
       return {
@@ -203,19 +208,21 @@ class AIEngine {
    * @returns {Promise<string|Object>} Wynik analizy w zadanym formacie
    */
   async generateGenericPrompt(promptId, context, format = 'html') {
-    if (!this.clientData) {
-      throw new Error('Session not initialized. Call initializeSession first.');
+    if (!this.clientData || !this.clientData.code) {
+      throw new Error('AI Engine client data not set. Call setClientData with valid data first.');
     }
 
     try {
       console.log(`🧠 Generating response for generic prompt (format: ${format})...`);
 
-      const response = await fetch('/.netlify/functions/execute-prompt', {
+      const response = await fetch('/.netlify/functions/call-open-router', {
         method: 'POST',
         body: JSON.stringify({
-          clientCode: this.clientData.code,
-          promptId: promptId,
+          prompt: promptId, // promptId to teraz właściwy prompt
+          context: context, // Przekazujemy MetaAnalysis
           model: this.currentModel,
+          systemPrompt: "Jesteś ekspertem w analizie psychometrycznej, który odpowiada na konkretne pytania.",
+          options: { max_tokens: 2048 }
         }),
       });
 
@@ -225,7 +232,13 @@ class AIEngine {
       }
 
       const data = await response.json();
-      const aiResponse = data.content;
+      console.log('Full response from /call-open-router:', data); // Debugging log
+
+      // Odpowiedź z OpenRouter jest w innej strukturze
+      if (data.error) {
+        throw new Error(`OpenRouter API Error: ${data.error.message}`);
+      }
+      const aiResponse = data.choices[0].message.content;
 
 
       if (format === 'json') {

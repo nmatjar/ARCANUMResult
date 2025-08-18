@@ -21,7 +21,7 @@ const PromptItem = ({ promptId, onExecute }) => {
         onClick={() => onExecute(promptId, title)}
         className="mt-3 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
       >
-        Wykonaj Analizę
+        {t('promptCatalog.executeAnalysis')}
       </button>
     </div>
   );
@@ -69,6 +69,7 @@ const PromptCatalogPage = ({ clientData }) => {
   const [result, setResult] = useState(null);
   const [modalTitle, setModalTitle] = useState('');
 
+  const { i18n } = useTranslation();
   const handleExecutePrompt = async (promptId, title) => {
     setIsModalOpen(true);
     setIsLoading(true);
@@ -84,12 +85,15 @@ const PromptCatalogPage = ({ clientData }) => {
       const isVisualPrompt = promptId.startsWith('7.');
       const responseFormat = isVisualPrompt ? 'json' : 'html';
       const rawPrompt = PROMPT_DEFINITIONS[promptId];
+      const currentLanguage = i18n.language;
       
-      const finalPrompt = `${rawPrompt}\n\nFormat odpowiedzi: ${responseFormat}`;
+      const finalPrompt = `${rawPrompt}\n\nJęzyk odpowiedzi: ${currentLanguage}\nFormat odpowiedzi: ${responseFormat} z użyciem klas Tailwind CSS do stylizacji.`;
 
       const aiResult = await aiEngine.generateGenericPrompt(finalPrompt, metaAnalysis, responseFormat);
 
-      setResult({ type: responseFormat, data: aiResult });
+      const cleanedResult = aiResult.replace(/```html\n|```/g, '').trim();
+
+      setResult({ type: responseFormat, data: cleanedResult });
     } catch (error) {
       console.error("Błąd podczas wykonywania promptu:", error);
       setResult({ type: 'html', data: `<p class="text-red-400">Wystąpił błąd: ${error.message}</p>` });

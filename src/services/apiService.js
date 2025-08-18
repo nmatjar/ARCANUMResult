@@ -1,6 +1,12 @@
 import axios from 'axios';
 import { getFeatureById } from '../config/featuresConfig';
-import { getCareerDataByCode } from './airtableService';
+const getCareerDataByCode = async (code) => {
+  const response = await fetch(`/.netlify/functions/get-client-vectors?clientCode=${code}`);
+  if (!response.ok) {
+    return null;
+  }
+  return response.json();
+};
 
 /**
  * Funkcja zwracająca wyjaśnienie dla danego typu osobowości według systemu BBT
@@ -47,7 +53,7 @@ const getPersonalityTypeExplanation = (personalityType) => {
   
   // Znajdź wszystkie czynniki za pomocą wyrażenia regularnego
   // Obsługuje formaty: "G+ 6" lub "G'+ 5" lub "K- -6" lub "G-6" lub "G'-5"
-  const factorRegex = /([A-Za-z]'?)(\+|\-)?\s*(-?\d+)/g;
+  const factorRegex = /([A-Za-z]'?)(\+|-)?\s*(-?\d+)/g;
   const matches = [...personalityType.matchAll(factorRegex)];
   
   if (matches.length === 0) {
@@ -314,7 +320,6 @@ export const generateContent = async (featureType, userCode, userData = null) =>
     console.log('- interests:', userInfo.interests?.substring(0, 50) + '...');
     
     // Przygotuj dane dodatkowe z profilu jeśli istnieją
-    let additionalData = {};
     if (userInfo.additional) {
       try {
         const parsedAdditional = typeof userInfo.additional === 'string' 

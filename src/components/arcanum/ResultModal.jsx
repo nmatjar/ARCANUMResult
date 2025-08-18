@@ -1,8 +1,10 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 import { ArcanumLoader } from './ArcanumLoader';
 
 export const ResultModal = ({ isOpen, onClose, isLoading, result, title }) => {
+  const { t } = useTranslation();
   if (!isOpen) {
     return null;
   }
@@ -52,7 +54,7 @@ export const ResultModal = ({ isOpen, onClose, isLoading, result, title }) => {
             <main className="p-6 overflow-y-auto">
               {isLoading ? (
                 <div className="flex justify-center items-center h-64">
-                  <ArcanumLoader message="Generowanie analizy..." />
+                  <ArcanumLoader message={t('promptCatalog.generatingAnalysis')} />
                 </div>
               ) : (
                 renderResult()
