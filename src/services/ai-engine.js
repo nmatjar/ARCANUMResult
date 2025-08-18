@@ -175,7 +175,15 @@ class AIEngine {
 
       if (!response.ok) {
         const errorBody = await response.text();
-        throw new Error(`Serverless function failed: ${errorBody}`);
+        console.error(`Netlify function error (${response.status}):`, errorBody);
+        
+        // Check if we're in development (localhost) or production
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const errorMessage = isDevelopment 
+          ? `Netlify function failed in development (${response.status}): ${errorBody.substring(0, 200)}`
+          : `Netlify function failed in production (${response.status}): ${errorBody.substring(0, 200)}`;
+        
+        throw new Error(errorMessage);
       }
 
       const data = await response.json();
@@ -233,7 +241,16 @@ class AIEngine {
 
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
-        throw new Error('Response is not JSON - likely Netlify functions not available in development');
+        const responseText = await response.text();
+        console.error('Non-JSON response from Netlify function:', responseText.substring(0, 500));
+        
+        // Check if we're in development (localhost) or production
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const errorMessage = isDevelopment 
+          ? 'Netlify functions not available in development mode'
+          : 'Netlify function returned invalid response format';
+        
+        throw new Error(errorMessage);
       }
 
       const data = await response.json();
@@ -261,11 +278,19 @@ class AIEngine {
 
     } catch (error) {
       console.error(`❌ Failed to generate response for generic prompt:`, error);
-      console.warn('⚠️ Falling back to demo response due to network error (likely development mode)');
       
-      // Fallback to demo response in development when Netlify functions aren't available
-      const demoResponse = this.generateDemoResponse(promptId, format);
-      return demoResponse;
+      // Check if we're in development mode
+      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      
+      if (isDevelopment) {
+        console.warn('⚠️ Falling back to demo response (development mode)');
+        const demoResponse = this.generateDemoResponse(promptId, format);
+        return demoResponse;
+      } else {
+        // In production, don't fallback to demo data - throw the error
+        console.error('❌ Production error - not falling back to demo data');
+        throw error;
+      }
     }
   }
 
