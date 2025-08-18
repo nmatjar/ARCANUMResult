@@ -1,7 +1,13 @@
 import { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { verifyCareerCode, generateContent } from '../services/apiService';
-import { deductTokens } from '../services/airtableService';
+const deductTokens = async (userId, tokensToDeduct) => {
+  const response = await fetch('/.netlify/functions/deduct-tokens', {
+    method: 'POST',
+    body: JSON.stringify({ userId, tokensToDeduct }),
+  });
+  return response.json();
+};
 import { callOpenRouterAPI } from '../utils/openRouterApi';
 import { TOKEN_COSTS, APP_CONFIG, featuresConfig } from '../config/featuresConfig';
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -133,7 +139,6 @@ UserProvider.propTypes = {
           };
         }
       } else {
-        // Deduct energy before generating content
         const tokenResult = await deductTokens(userData.id, tokensRequired);
         
         if (!tokenResult.success) {
@@ -145,7 +150,6 @@ UserProvider.propTypes = {
           };
         }
         
-        // Update user data with new token balance
         const updatedUserData = {
           ...userData,
           tokens: tokenResult.newBalance
@@ -198,14 +202,12 @@ UserProvider.propTypes = {
       throw new Error('Brak identyfikatora użytkownika');
     }
     
-    // Pobierz saldo energii
     const tokenResult = await deductTokens(userData.id, tokensRequired);
     
     if (!tokenResult.success) {
       throw new Error(`Niewystarczająca ilość energii. Dostępne: ${tokenResult.newBalance}, wymagane: ${tokensRequired}`);
     }
     
-    // Aktualizacja salda użytkownika
     const updatedUserData = {
       ...userData,
       tokens: tokenResult.newBalance
@@ -261,7 +263,6 @@ UserProvider.propTypes = {
           };
         }
       } else {
-        // Deduct energy before regenerating content
         const tokenResult = await deductTokens(userData.id, tokensRequired);
         
         if (!tokenResult.success) {
@@ -273,7 +274,6 @@ UserProvider.propTypes = {
           };
         }
         
-        // Update user data with new token balance
         const updatedUserData = {
           ...userData,
           tokens: tokenResult.newBalance
@@ -307,11 +307,8 @@ UserProvider.propTypes = {
   const updateUserData = async () => {
     if (userData?.id) {
       try {
-        // Zamiast require używamy import, który działa w ES modules
-        const airtableService = await import('../services/airtableService');
-        console.log("Fetching updated user data for ID:", userData.id);
-        const updatedUserData = await airtableService.getUserById(userData.id);
-        console.log("Setting updated user data:", !!updatedUserData);
+        const response = await fetch(`/.netlify/functions/get-user-by-id?userId=${userData.id}`);
+        const updatedUserData = await response.json();
         setUserData(updatedUserData);
       } catch (error) {
         console.error("Error updating user data:", error);
