@@ -1,6 +1,5 @@
 /* eslint-env node */
 exports.handler = async (event) => {
-  const fetch = (await import('node-fetch')).default;
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, body: 'Method Not Allowed' };
   }
