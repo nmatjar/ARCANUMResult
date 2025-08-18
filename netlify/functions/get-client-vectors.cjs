@@ -9,7 +9,11 @@ exports.handler = async (event) => {
 
   if (event.httpMethod !== 'GET') {
     console.log('Invalid HTTP method:', event.httpMethod);
-    return { statusCode: 405, body: 'Method Not Allowed' };
+    return { 
+      statusCode: 405, 
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'Method Not Allowed' }) 
+    };
   }
 
   try {
@@ -18,7 +22,11 @@ exports.handler = async (event) => {
 
     if (!clientCode) {
       console.error('Error: clientCode is missing.');
-      return { statusCode: 400, body: JSON.stringify({ error: 'clientCode is required' }) };
+      return { 
+        statusCode: 400, 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'clientCode is required' }) 
+      };
     }
 
     // Check for environment variables
@@ -48,7 +56,11 @@ exports.handler = async (event) => {
 
     if (!records || records.length === 0) {
       console.warn(`Client not found for code: ${clientCode}`);
-      return { statusCode: 404, body: JSON.stringify({ error: 'Client not found' }) };
+      return { 
+        statusCode: 404, 
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ error: 'Client not found' }) 
+      };
     }
 
     const clientData = records[0].fields;
@@ -56,10 +68,17 @@ exports.handler = async (event) => {
 
     return {
       statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify(clientData),
     };
   } catch (error) {
     console.error('Error in get-client-vectors function:', error);
-    return { statusCode: 500, body: JSON.stringify({ error: error.message }) };
+    return { 
+      statusCode: 500, 
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: error.message }) 
+    };
   }
 };
