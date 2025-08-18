@@ -61,12 +61,23 @@ class ClientDataService {
       const response = await fetch(`/.netlify/functions/get-client-vectors?clientCode=${clientCode}`);
       
       if (!response.ok) {
-        throw new Error(`Network response was not ok, status: ${response.status}`);
+        const errorText = await response.text();
+        console.error(`Netlify function error (${response.status}):`, errorText);
+        throw new Error(`Netlify function failed with status ${response.status}: ${errorText.substring(0, 200)}`);
       }
       
       const contentType = response.headers.get('content-type');
       if (!contentType || !contentType.includes('application/json')) {
-        throw new Error('Response is not JSON - likely Netlify functions not available in development');
+        const responseText = await response.text();
+        console.error('Non-JSON response from Netlify function:', responseText.substring(0, 500));
+        
+        // Check if we're in development (localhost) or production
+        const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const errorMessage = isDevelopment 
+          ? 'Netlify functions not available in development mode'
+          : 'Netlify function returned invalid response format';
+        
+        throw new Error(errorMessage);
       }
       
       const rawData = await response.json();
@@ -75,12 +86,20 @@ class ClientDataService {
       return normalizedData;
     } catch (error) {
       console.error('Error fetching client vectors:', error);
-      console.warn('⚠️ Falling back to demo data due to network error (likely development mode)');
       
-      // Fallback to demo data in development when Netlify functions aren't available
-      const demoData = this.getDemoData(clientCode);
-      this.clientDataCache.set(clientCode, demoData);
-      return demoData;
+      // Check if we're in development mode
+      const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+      
+      if (isDevelopment) {
+        console.warn('⚠️ Falling back to demo data (development mode)');
+        const demoData = this.getDemoData(clientCode);
+        this.clientDataCache.set(clientCode, demoData);
+        return demoData;
+      } else {
+        // In production, don't fallback to demo data - throw the error
+        console.error('❌ Production error - not falling back to demo data');
+        throw error;
+      }
     }
   }
 
