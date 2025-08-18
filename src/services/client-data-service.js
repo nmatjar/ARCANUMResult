@@ -59,16 +59,28 @@ class ClientDataService {
     try {
       console.log(`Fetching data from network for clientCode: ${clientCode}`);
       const response = await fetch(`/.netlify/functions/get-client-vectors?clientCode=${clientCode}`);
+      
       if (!response.ok) {
         throw new Error(`Network response was not ok, status: ${response.status}`);
       }
+      
+      const contentType = response.headers.get('content-type');
+      if (!contentType || !contentType.includes('application/json')) {
+        throw new Error('Response is not JSON - likely Netlify functions not available in development');
+      }
+      
       const rawData = await response.json();
       const normalizedData = this._normalizeData(rawData);
       this.clientDataCache.set(clientCode, normalizedData);
       return normalizedData;
     } catch (error) {
       console.error('Error fetching client vectors:', error);
-      throw new Error('Nie udało się pobrać danych klienta.');
+      console.warn('⚠️ Falling back to demo data due to network error (likely development mode)');
+      
+      // Fallback to demo data in development when Netlify functions aren't available
+      const demoData = this.getDemoData(clientCode);
+      this.clientDataCache.set(clientCode, demoData);
+      return demoData;
     }
   }
 

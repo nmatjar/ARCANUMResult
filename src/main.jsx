@@ -9,13 +9,11 @@ import { UserProvider } from './contexts/UserContext.jsx';
 import './index.css';
 import './i18n';
 
-// Konfiguracja React w trybie strict
+// Konfiguracja React
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Suspense fallback="loading">
-      <UserProvider>
-        <App />
-      </UserProvider>
-    </Suspense>
-  </React.StrictMode>
+  <Suspense fallback="loading">
+    <UserProvider>
+      <App />
+    </UserProvider>
+  </Suspense>
 );

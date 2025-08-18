@@ -23,9 +23,6 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-UserProvider.propTypes = {
-  children: PropTypes.node.isRequired,
-};
   // Używamy useLocalStorage zamiast zwykłego useState dla persystencji
   const [userCode, setUserCode] = useLocalStorage('userCode', '');
   const [userData, setUserData] = useLocalStorage('userData', null);
@@ -347,4 +344,8 @@ UserProvider.propTypes = {
       {children}
     </UserContext.Provider>
   );
+};
+
+UserProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
