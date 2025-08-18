@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { clientDataService } from '../../services/client-data-service.js';
 import { aiEngine } from '../../services/ai-engine.js';
 import { ArcanumLoader } from './ArcanumLoader.jsx';
@@ -11,6 +12,7 @@ import PromptCatalogPage from '../../pages/PromptCatalogPage.jsx';
  * Nowa wersja - ładuje dane i od razu przechodzi do katalogu promptów.
  */
 export const ArcanumLayout = () => {
+  const { t } = useTranslation();
   const urlParams = new URLSearchParams(window.location.search);
   const initialClientCode = urlParams.get('client') || urlParams.get('code') || urlParams.get('clientCode');
   
@@ -77,7 +79,7 @@ export const ArcanumLayout = () => {
   }
 
   if (loading) {
-    return <ArcanumLoader message="Pobieranie i weryfikacja danych..." />;
+    return <ArcanumLoader message={t('verifyingData')} />;
   }
 
   if (error) {

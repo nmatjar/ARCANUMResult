@@ -36,9 +36,12 @@
   "contactUs": "Skontaktuj się z nami",
   "enterCode": "Proszę wprowadzić kod dostępu",
   "codeTooShort": "Kod dostępu jest za krótki",
+  "verifyingData": "Pobieranie i weryfikacja danych...",
   "promptCatalog": {
     "title": "Uniwersalny Katalog Możliwości",
     "description": "Ten katalog zawiera 80 szablonów analitycznych, zaprojektowanych do systematycznego i wielopoziomowego przetwarzania surowego raportu analitycznego na spersonalizowane, użyteczne i strategiczne insighty. Jest to narzędzie dla osób decyzyjnych, które pokazuje jakie możliwości daje nasz test i zachęca do wypróbowania większej ilości z nich.",
+    "executeAnalysis": "Wykonaj Analizę",
+    "generatingAnalysis": "Generowanie analizy...",
     "categories": {
       "1": "Rdzeń Tożsamości i System Operacyjny",
       "2": "Supermoce i Zasoby Naturalne",

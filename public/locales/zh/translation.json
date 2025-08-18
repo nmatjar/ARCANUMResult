@@ -36,9 +36,12 @@
   "contactUs": "联系我们",
   "enterCode": "请输入访问代码",
   "codeTooShort": "访问代码太短",
+  "verifyingData": "正在检索和验证数据...",
   "promptCatalog": {
     "title": "通用能力目录",
     "description": "该目录包含80个分析模板，旨在将原始分析报告系统地、多层次地处理为个性化、实用和战略性的见解。这是一个为决策者设计的工具，展示了我们测试的能力，并鼓励他们尝试更多的功能。",
+    "executeAnalysis": "执行分析",
+    "generatingAnalysis": "正在生成分析...",
     "categories": {
       "1": "核心身份与操作系统",
       "2": "超能力与自然资源",

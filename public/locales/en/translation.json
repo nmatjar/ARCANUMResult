@@ -36,9 +36,12 @@
   "contactUs": "Contact us",
   "enterCode": "Please enter the access code",
   "codeTooShort": "The access code is too short",
+  "verifyingData": "Retrieving and verifying data...",
   "promptCatalog": {
     "title": "Universal Catalog of Capabilities",
     "description": "This catalog contains 80 analytical templates designed for the systematic and multi-level processing of a raw analytical report into personalized, useful, and strategic insights. It is a tool for decision-makers that shows the capabilities of our test and encourages them to try more of them.",
+    "executeAnalysis": "Execute Analysis",
+    "generatingAnalysis": "Generating analysis...",
     "categories": {
       "1": "Core Identity and Operating System",
       "2": "Superpowers and Natural Resources",
