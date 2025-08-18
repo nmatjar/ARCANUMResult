@@ -252,13 +252,7 @@ generateLevelAnalysis(level, clientData, previousLevels)
 **Konfiguracja:**
 ```javascript
 // Wymagane zmienne środowiskowe
-VITE_GEMINI_API_KEY=your_gemini_key
-VITE_GEMINI_MODEL=gemini-1.5-pro
 
-// Alternatywnie OpenRouter
-VITE_OPENROUTER_API_KEY=your_openrouter_key
-VITE_OPENROUTER_MODEL=anthropic/claude-3.5-sonnet
-```
 
 ### 3. ArcanumPrompts (arcanum-prompts.js)
 
@@ -377,29 +371,6 @@ export const LEVEL_PROMPTS = {
 
 ## ⚙️ Konfiguracja
 
-### 1. Zmienne Środowiskowe (.env)
-```bash
-# Gemini AI API
-VITE_GEMINI_API_KEY=your_gemini_api_key_here
-VITE_GEMINI_MODEL=gemini-1.5-pro
-
-# Airtable Configuration
-VITE_AIRTABLE_API_KEY=your_airtable_api_key_here
-VITE_AIRTABLE_BASE_ID=your_airtable_base_id_here
-VITE_AIRTABLE_TABLE_NAME=Clients
-
-# Development Mode
-VITE_DEMO_MODE=true
-
-# OpenRouter API (alternatywa)
-VITE_OPENROUTER_API_KEY=your_openrouter_api_key_here
-VITE_OPENROUTER_MODEL=anthropic/claude-3.5-sonnet
-
-# Application Settings
-VITE_APP_NAME=ARCĀNUM Results Portal
-VITE_APP_VERSION=1.0.0
-VITE_DEBUG_MODE=true
-```
 
 ### 2. Struktura Airtable
 
