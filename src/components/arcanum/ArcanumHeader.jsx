@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import PropTypes from 'prop-types';
+import { useNavigate, useLocation } from 'react-router-dom';
 import LanguageSwitcher from '../LanguageSwitcher';
 import { useTranslation } from 'react-i18next';
 
@@ -8,6 +9,13 @@ import { useTranslation } from 'react-i18next';
  */
 export const ArcanumHeader = ({ clientData }) => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const navigationItems = [
+    { path: '/', label: 'Katalog', icon: '📋' },
+    { path: '/soul-mirror', label: 'Lustro Duszy', icon: '🔮' }
+  ];
 
   return (
     <motion.header 
@@ -21,6 +29,22 @@ export const ArcanumHeader = ({ clientData }) => {
         <div className="header-brand">
           <h1 className="header-title">ARCĀNUM</h1>
           <span className="header-subtitle">心钥</span>
+        </div>
+
+        {/* Nawigacja */}
+        <div className="header-navigation">
+          {navigationItems.map((item) => (
+            <motion.button
+              key={item.path}
+              onClick={() => navigate(item.path)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className={`nav-btn ${location.pathname === item.path ? 'active' : ''}`}
+            >
+              <span className="nav-icon">{item.icon}</span>
+              <span className="nav-label">{item.label}</span>
+            </motion.button>
+          ))}
         </div>
 
         <LanguageSwitcher />
@@ -110,7 +134,44 @@ const headerStyles = `
 .header-navigation {
   display: flex;
   align-items: center;
-  gap: var(--arcanum-spacing-lg);
+  gap: var(--arcanum-spacing-md);
+}
+
+.nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.nav-btn:hover {
+  background: rgba(212, 175, 55, 0.2);
+  border-color: rgba(212, 175, 55, 0.6);
+  color: white;
+}
+
+.nav-btn.active {
+  background: rgba(212, 175, 55, 0.3);
+  border-color: var(--arcanum-swiss-gold);
+  color: var(--arcanum-swiss-gold);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.nav-icon {
+  font-size: 1.1rem;
+}
+
+.nav-label {
+  font-size: 0.85rem;
 }
 
 .level-indicator {

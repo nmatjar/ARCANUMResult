@@ -13,6 +13,8 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.7.2",
     "@google/generative-ai": "^0.2.1",
+    "@react-three/drei": "^10.7.3",
+    "@react-three/fiber": "^9.3.0",
     "@shadcn/ui": "^0.0.4",
     "@stripe/react-stripe-js": "^3.1.1",
     "@tailwindcss/postcss": "^4.0.8",
@@ -25,10 +27,14 @@
     "node-fetch": "^3.3.2",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-flow-renderer": "^10.3.17",
     "react-i18next": "^15.6.1",
     "react-markdown": "^10.0.0",
     "react-router-dom": "^7.2.0",
-    "remark-gfm": "^4.0.1"
+    "recharts": "^3.1.2",
+    "remark-gfm": "^4.0.1",
+    "three": "^0.179.1",
+    "zustand": "^5.0.8"
   },
   "devDependencies": {
     "@anthropic-ai/sdk": "^0.37.0",

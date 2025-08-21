@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { BrowserRouter as Router, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { clientDataService } from '../../services/client-data-service.js';
 import { aiEngine } from '../../services/ai-engine.js';
 import { ArcanumLoader } from './ArcanumLoader.jsx';
 import { ErrorPage } from './ErrorPage.jsx';
 import { CodeInput } from './CodeInput.jsx';
 import PromptCatalogPage from '../../pages/PromptCatalogPage.jsx';
+import { SoulMirrorDashboard } from '../soul-mirror/SoulMirrorDashboard.jsx';
 
 /**
  * ARCĀNUM Layout - Główny komponent Results Portal
@@ -99,6 +101,13 @@ export const ArcanumLayout = () => {
     );
   }
 
-  // Po załadowaniu danych klienta, od razu pokazujemy katalog promptów
-  return <PromptCatalogPage clientData={clientData} />;
+  // Po załadowaniu danych klienta, pokazujemy routing
+  return (
+    <Router>
+      <Routes>
+        <Route path="/" element={<PromptCatalogPage clientData={clientData} />} />
+        <Route path="/soul-mirror" element={<SoulMirrorDashboard clientData={clientData} />} />
+      </Routes>
+    </Router>
+  );
 };
